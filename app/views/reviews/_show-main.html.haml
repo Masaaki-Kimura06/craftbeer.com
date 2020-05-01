@@ -1,0 +1,85 @@
+.show-main
+  .show-main__top
+    .show-main__top__left-box
+      .show-main__top__left-box__image-box
+        = image_tag @review.image, size: "391x418", alt: "Image Comming Soon"
+    .show-main__top__right-box
+      .show-main__top__right-box__top
+        = link_to "#" do
+          .show-main__top__right-box__top__reviewer-image
+            = image_tag "sample-profile", size: "110x90", alt: "Image Comming Soon"
+        .show-main__top__right-box__top__info
+          .show-main__top__right-box__top__info__about-reviewer
+          = link_to "#" do
+            %span
+              運営者
+          %span
+            = @review.created_at.strftime("%Y年%m月%d日")
+          .show-main__top__right-box__top__info__rate
+            ★★★★★
+          .show-main__top__right-box__top__info__about-ec
+            = link_to @review.ec_amazon, target: :_blank do
+              - if @review.ec_amazon.blank?
+              - else
+                = image_tag "Amazon_icon", size: "30x30", alt: "Image Comming Soon"
+            = link_to @review.ec_rakuten, target: :_blank do
+              - if @review.ec_rakuten.blank?
+              - else            
+                = image_tag "Rakuten-Icon", size: "30x30", alt: "Image Comming Soon"
+            = link_to @review.ec_goodbeer, target: :_blank do
+              - if @review.ec_goodbeer.blank?
+              - else            
+                = image_tag "goodbeer_logo", size: "70x30", alt: "Image Comming Soon"
+      .show-main__top__right-box__bottom
+        .show-main__top__right-box__bottom__beer-name
+          = @review.beer_name
+        .show-main__top__right-box__bottom__item-table
+          %dl
+            %dt ブリュワリー
+            %dd
+              = @review.brewery.brewery_name
+          %dl
+            %dt スタイル
+            %dd
+              = @review.style.beer_style
+          %dl
+            %dt 生産地
+            %dd 
+              = @review.brewery.brewery_country
+              = @review.brewery.brewery_city
+          %dl
+            %dt ABV（アルコール度数）
+            %dd
+              = @review.abv 
+          %dl
+            %dt IBU（国際苦味単位）
+            %dd
+              = @review.ibu
+          %dl
+            %dt 飲める店
+            %dd
+              ＜ 
+              = @review.beer_spot_city 
+              ＞
+              = @review.beer_spot_name
+          %dl
+            %dt URL
+            %dd
+              = link_to @review.beer_spot_url, target: :_blank do
+                = truncate(@review.beer_spot_url, :length => 35)
+
+  .show-main__bottom
+    .show-main__bottom__review-box
+      = simple_format(@review.text)
+
+    .show-main__bottom__toppage-btn
+      = link_to root_path do
+        TOPページへ
+  .show-main__comment
+    .show-main__comment__left-box
+      %h3　飲んだ感想をシェアしよう！
+      %form.show-main__comment__left-box__comment-box
+        %input.show-main__comment__left-box__text
+        %input.show-main__comment__left-box__rate
+    .show-main__comment__right-box
+      %h3　飲めるお店をシェアしよう！    

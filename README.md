@@ -35,7 +35,7 @@
 |ec-goodbeer|text|
 |ec-amazon|text|
 |ec-rakuten|text|
-|reviewer_id|integer|null: false, foreign_key: true|
+|reviewer_id|integer|null: false, foreign_key:true|
 
 ### Association
 - has_many :comments

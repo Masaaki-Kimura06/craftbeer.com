@@ -71,6 +71,11 @@ gem 'rspec-rails', '~> 3.5'
 gem 'rails-controller-testing'
 gem 'factory_bot_rails'
 gem 'faker'
+gem 'compass-rails', '3.1.0'
+gem 'sprockets', '3.7.2'
+gem 'kaminari'
+gem 'jquery-rails'
+
 
 group :production do
   gem 'unicorn', '5.4.1'
