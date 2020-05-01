@@ -1,0 +1,200 @@
+.main
+  .main__top
+    .main__top__left-box
+      %ul.main__top__left-box__guide
+        メニュー
+        %li.main__top__left-box__guide__start-guide
+          = link_to "#" do
+            ✔️麦酒どっとこむとは
+        - if user_signed_in?
+          %li.main__top__left-box__guide__login
+            = link_to edit_user_path(current_user) do
+              ✔️ログアウト/編集          
+        - else
+          %li.main__top__left-box__guide__login
+            = link_to "users/sign_in" do
+              ✔️ログイン       
+      %ul.main__top__left-box__search
+        ビールを探す
+        %li.main__top__left-box__search__style
+          ▼スタイルから探す
+          %ul
+            %li
+              ▼エール  
+              %ul
+                %li
+                  = link_to style_path(1) do
+                    IPA 
+                %li
+                  = link_to style_path(2) do
+                    ホワイトエール  
+                %li
+                  = link_to style_path(3) do
+                    ベルジャンエール 
+                %li
+                  = link_to style_path(4) do
+                    セゾン  
+                %li
+                  = link_to style_path(5) do
+                    スタウト 
+                %li
+                  = link_to style_path(6) do
+                    ポーター
+                %li
+                  = link_to style_path(7) do
+                    ストロングエール
+                %li
+                  = link_to style_path(8) do
+                    その他エール                                                                                                                    
+            %li               
+              ▼ラガー 
+              %ul
+                %li
+                  = link_to style_path(9) do
+                    ピルスナー
+                %li
+                  = link_to style_path(10) do
+                    ダークラガー  
+                %li
+                  = link_to style_path(11) do
+                    その他ラガー                
+            %li
+              ▼その他  
+              %ul
+                %li
+                  = link_to style_path(12) do
+                    ランビック
+                %li
+                  = link_to style_path(13) do
+                    サワー  
+                %li
+                  = link_to style_path(14) do
+                    その他                
+        %li.main__top__left-box__search__brewery
+          ▼ブリュワリーから探す
+          %ul
+            %li
+              ▼日本  
+              %ul
+                %li
+                  = link_to brewery_path(1) do
+                    玉村本店 
+                %li
+                  = link_to brewery_path(2) do
+                    伊勢角屋麦酒  
+                %li
+                  = link_to brewery_path(3) do
+                    わかさいも本舗
+                %li
+                  = link_to brewery_path(4) do
+                    Far Yeast Brewing
+                %li
+                  = link_to brewery_path(5) do
+                    箕面ビール
+                %li
+                  = link_to brewery_path(6) do
+                    Y.MARKET
+                %li
+                  = link_to brewery_path(7) do
+                    COEDO                                                            
+          %ul
+            %li
+              ▼海外
+              %ul    
+                %li
+                  = link_to brewery_path(8) do
+                    BrewDog 
+                %li
+                  = link_to brewery_path(9) do
+                    Mikkeller
+                %li
+                  = link_to brewery_path(10) do
+                    Thornbridge   
+                %li
+                  = link_to brewery_path(11) do
+                    De Ranke                                                                                             
+        %li.main__top__left-box__search__reviewer
+          ▼レビュアーから探す     
+          %ul
+            %li
+              = link_to reviewer_path(1) do
+                運営者
+              
+    .main__top__right-box
+      .main__top__right-box__image-box
+        %p おすすめ麦酒
+        = link_to "#" do
+          = image_tag "sample", size: "300x211", alt: "Image Comming Soon"
+      .main__top__right-box__review-box
+        .main__top__right-box__review-box__top
+          .main__top__right-box__review-box__top__beer-spec
+            .main__top__right-box__review-box__top__beer-spec__name
+              よなよなエール
+            .main__top__right-box__review-box__top__beer-spec__brewery
+              ブリュワリー名：ヤッホーブルーイング
+            .main__top__right-box__review-box__top__beer-spec__style
+              スタイル：ペールエール
+          .main__top__right-box__review-box__top__rate
+            %p 評価
+            %p ★★★★★
+        .main__top__right-box__review-box__bottom
+          .main__top__right-box__review-box__bottom__reviewr-info
+            = link_to "#" do
+              .main__top__right-box__review-box__bottom__reviewr-info__profile-image
+                = image_tag "sample-profile", size: "110x90", alt: "Image Comming Soon"  
+              .main__top__right-box__review-box__bottom__reviewr-info__profile-name
+                運営者  
+          .main__top__right-box__review-box__bottom__review-summary
+            日本のクラフトビールを牽引しているヤッホーさんの看板ビール。
+            %br
+            食中酒としてもイケるよなよなエールで今夜は何とマリアージュ
+            = link_to "#" do
+              ・・・more
+  .main__bottom
+    
+    - @reviews.each do |review|
+      .main__bottom__review-box
+        .main__bottom__review-box__top
+          = link_to "/reviews/#{review.id}" do
+            .main__bottomz__review-box__top__beer-image
+              = image_tag review.image , size: "180x140", alt: "Image Comming Soon"
+            .main__bottom__review-box__top__beer-name
+              = review.beer_name
+        .main__bottom__review-box__bottom
+          .main__bottom__review-box__bottom__content
+            = link_to "/reviews/#{review.id}" do
+              .main__bottom__review-box__bottom__content__reviewer-info
+                .main__bottom__review-box__bottom__content__reviewer-info__image
+                  = image_tag review.reviewer.image, size: "60x50", alt: "Image Comming Soon"  
+                .main__bottom__review-box__bottom__content__reviewer-info__name
+                  = review.reviewer.reviewer_name
+            .main__bottom__review-box__bottom__content__beer-info
+              .main__bottom__review-box__bottom__content__beer-info__brewery
+                ブリュワリー名：
+                = review.brewery.brewery_name
+              .main__bottom__review-box__bottom__content__beer-info__style
+                スタイル：
+                = review.style.beer_style
+          .main__bottom__review-box__bottom__review-summary
+            = truncate(review.text, :length => 70)
+            = link_to "/reviews/#{review.id}" do
+              more
+          .main__bottom__review-box__bottom__rate
+            %div{:id => "star-rate-#{review.id}"}
+              :javascript
+                $('#star-rate-#{review.id}').raty({
+                  number: 5,
+                  size: 36,
+                  starOff: "#{asset_path('star-off.png')}",
+                  starOn: "#{asset_path('star-on.png')}",
+                  starHalf: "#{asset_path('star-half.png')}",
+                  half: true,
+                  readOnly: true,
+                  score: "#{review.rate}",
+                  });
+.paginate
+  = paginate(@reviews)
+    
+
+
+    
