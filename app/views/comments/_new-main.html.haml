@@ -1,0 +1,31 @@
+.form-box
+  = link_to "/reviews/#{@review.id}" do
+    麦酒ページに戻る
+  = form_with(model: [@review, @comment], local: true) do |form|
+    .form-box__top
+      .form-box__top__text-area
+        %h3
+          麦酒の感想（必須）
+        %p  
+          ＜5段階評価＞
+        = form.number_field :rate, in: 1.0..5.0, step: 0.5
+        %p 
+          ＜感想＞
+        .form-box__top__text-area__size  
+          = form.text_area :text, placeholder: "この麦酒の旨さをシェアしよう（140字まで）", rows: "10", size: "50", maxlength: "140" 
+      .form-box__top__beer-spot
+        %h3
+          飲めるお店情報
+          (任意)
+        %p 
+          ＜店名＞               
+        = form.text_field :beer_spot_name, placeholder: "例：クラフトビアマーケット", size: "50"
+        %p 
+          ＜都道府県＞        
+        = form.text_field :beer_spot_city, placeholder: "例：東京", size: "50"
+        %p 
+          ＜お店URL＞         
+        = form.text_field  :beer_spot_url, placeholder: "例：食べログ/お店HP" , size: "50"
+
+    .form-box__send-btn
+      = form.submit "SEND", id: "submit"

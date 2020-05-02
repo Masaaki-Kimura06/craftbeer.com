@@ -119,45 +119,153 @@
             %li
               = link_to reviewer_path(1) do
                 運営者
-              
-    .main__top__right-box
-      .main__top__right-box__image-box
-        %p おすすめ麦酒
-        = link_to "#" do
-          = image_tag "sample", size: "300x211", alt: "Image Comming Soon"
-      .main__top__right-box__review-box
-        .main__top__right-box__review-box__top
-          .main__top__right-box__review-box__top__beer-spec
-            .main__top__right-box__review-box__top__beer-spec__name
-              よなよなエール
-            .main__top__right-box__review-box__top__beer-spec__brewery
-              ブリュワリー名：ヤッホーブルーイング
-            .main__top__right-box__review-box__top__beer-spec__style
-              スタイル：ペールエール
-          .main__top__right-box__review-box__top__rate
-            %p 評価
-            %p ★★★★★
-        .main__top__right-box__review-box__bottom
-          .main__top__right-box__review-box__bottom__reviewr-info
-            = link_to "#" do
-              .main__top__right-box__review-box__bottom__reviewr-info__profile-image
-                = image_tag "sample-profile", size: "110x90", alt: "Image Comming Soon"  
-              .main__top__right-box__review-box__bottom__reviewr-info__profile-name
-                運営者  
-          .main__top__right-box__review-box__bottom__review-summary
-            日本のクラフトビールを牽引しているヤッホーさんの看板ビール。
-            %br
-            食中酒としてもイケるよなよなエールで今夜は何とマリアージュ
-            = link_to "#" do
-              ・・・more
-  .main__bottom
-    
+
+    :javascript
+      $(function() {
+          $('#recommend_beer').slider({  
+              showControls: false,            
+              autoplay: true, //　自動再生するか
+              showPosition: true,  //　ポジションを表示するか
+              hoverPause: true, // Hover時に一時停止するか 
+              wait: 6000,
+              fade: 800,
+              direction: "left"
+          });
+      });
+    %div{:id => "recommend_beer"}          
+      .main__top__right-box
+        .main__top__right-box__image-box
+          %p おすすめ麦酒①
+          = link_to "reviews/#{@topreview.id}" do
+            = image_tag @topreview.image.url, size: "210x200", alt: "Image Comming Soon"
+        .main__top__right-box__review-box
+          .main__top__right-box__review-box__top
+            .main__top__right-box__review-box__top__beer-spec
+              .main__top__right-box__review-box__top__beer-spec__name
+                = @topreview.beer_name
+              .main__top__right-box__review-box__top__beer-spec__brewery
+                ブリュワリー名：
+                = @topreview.brewery.brewery_name
+              .main__top__right-box__review-box__top__beer-spec__style
+                スタイル：
+                = @topreview.style.beer_style
+            .main__top__right-box__review-box__top__rate
+              %p 評価
+              %div{:id => "top-star-rate-#{@topreview.id}"}
+                :javascript
+                  $('#top-star-rate-#{@topreview.id}').raty({
+                   number: 5,
+                   size: 36,
+                   starOff: "#{asset_path('star-off.png')}",
+                   starOn: "#{asset_path('star-on.png')}",
+                   starHalf: "#{asset_path('star-half.png')}",
+                   half: true,
+                   readOnly: true,
+                   score: "#{@topreview.rate}",
+                   });           
+          .main__top__right-box__review-box__bottom
+            .main__top__right-box__review-box__bottom__reviewr-info
+              = link_to  "/reviewer/#{@topreview.reviewer_id}" do
+                .main__top__right-box__review-box__bottom__reviewr-info__profile-image
+                  = image_tag @topreview.reviewer.image, size: "110x90", alt: "Image Comming Soon"  
+                .main__top__right-box__review-box__bottom__reviewr-info__profile-name
+                  = @topreview.reviewer.reviewer_name
+            .main__top__right-box__review-box__bottom__review-summary
+              = truncate(@topreview.text, :length => 70)
+              = link_to "/reviews/#{@topreview.id}" do
+                more
+
+      .main__top__right-box
+        .main__top__right-box__image-box
+          %p おすすめ麦酒②
+          = link_to "reviews/#{@secondreview.id}" do
+            = image_tag @secondreview.image.url, size: "210x200", alt: "Image Comming Soon"
+        .main__top__right-box__review-box
+          .main__top__right-box__review-box__top
+            .main__top__right-box__review-box__top__beer-spec
+              .main__top__right-box__review-box__top__beer-spec__name
+                = @secondreview.beer_name
+              .main__top__right-box__review-box__top__beer-spec__brewery
+                ブリュワリー名：
+                = @secondreview.brewery.brewery_name
+              .main__top__right-box__review-box__top__beer-spec__style
+                スタイル：
+                = @secondreview.style.beer_style
+            .main__top__right-box__review-box__top__rate
+              %p 評価
+              %div{:id => "second-star-rate-#{@secondreview.id}"}
+                :javascript
+                  $('#second-star-rate-#{@secondreview.id}').raty({
+                    number: 5,
+                    size: 36,
+                    starOff: "#{asset_path('star-off.png')}",
+                    starOn: "#{asset_path('star-on.png')}",
+                    starHalf: "#{asset_path('star-half.png')}",
+                    half: true,
+                    readOnly: true,
+                    score: "#{@secondreview.rate}",
+                    });            
+          .main__top__right-box__review-box__bottom
+            .main__top__right-box__review-box__bottom__reviewr-info
+              = link_to  "/reviewer/#{@secondreview.reviewer_id}" do
+                .main__top__right-box__review-box__bottom__reviewr-info__profile-image
+                  = image_tag @secondreview.reviewer.image, size: "110x90", alt: "Image Comming Soon"  
+                .main__top__right-box__review-box__bottom__reviewr-info__profile-name
+                  = @secondreview.reviewer.reviewer_name
+            .main__top__right-box__review-box__bottom__review-summary
+              = truncate(@secondreview.text, :length => 70)
+              = link_to "/reviews/#{@secondreview.id}" do
+                more
+
+      -# .main__top__right-box
+      -#   .main__top__right-box__image-box
+      -#     %p おすすめ麦酒③
+      -#     = link_to "reviews/#{@thirdreview.id}" do
+      -#       = image_tag @thirdreview.image, size: "210x200", alt: "Image Comming Soon"
+      -#   .main__top__right-box__review-box
+      -#     .main__top__right-box__review-box__top
+      -#       .main__top__right-box__review-box__top__beer-spec
+      -#         .main__top__right-box__review-box__top__beer-spec__name
+      -#           = @thirdreview.beer_name
+      -#         .main__top__right-box__review-box__top__beer-spec__brewery
+      -#           ブリュワリー名：
+      -#           = @thirdreview.brewery.brewery_name
+      -#         .main__top__right-box__review-box__top__beer-spec__style
+      -#           スタイル：
+      -#           = @thirdreview.style.beer_style
+      -#       .main__top__right-box__review-box__top__rate
+      -#         %p 評価
+      -#         %div{:id => "third-star-rate-#{@thirdreview.id}"}
+      -#           :javascript
+      -#             $('#third-star-rate-#{@thirdreview.id}').raty({
+      -#               number: 5,
+      -#               size: 36,
+      -#               starOff: "#{asset_path('star-off.png')}",
+      -#               starOn: "#{asset_path('star-on.png')}",
+      -#               starHalf: "#{asset_path('star-half.png')}",
+      -#               half: true,
+      -#               readOnly: true,
+      -#               score: "#{@thirdreview.rate}",
+      -#               });            
+      -#     .main__top__right-box__review-box__bottom
+      -#       .main__top__right-box__review-box__bottom__reviewr-info
+      -#         = link_to  "/reviewer/#{@thirdreview.reviewer_id}" do
+      -#           .main__top__right-box__review-box__bottom__reviewr-info__profile-image
+      -#             = image_tag @thirdreview.reviewer.image, size: "110x90", alt: "Image Comming Soon"  
+      -#           .main__top__right-box__review-box__bottom__reviewr-info__profile-name
+      -#             = @thirdreview.reviewer.reviewer_name
+      -#       .main__top__right-box__review-box__bottom__review-summary
+      -#         = truncate(@thirdreview.text, :length => 70)
+      -#         = link_to "/reviews/#{@thirdreview.id}" do
+      -#           more                
+
+  .main__bottom  
     - @reviews.each do |review|
       .main__bottom__review-box
         .main__bottom__review-box__top
           = link_to "/reviews/#{review.id}" do
             .main__bottomz__review-box__top__beer-image
-              = image_tag review.image , size: "180x140", alt: "Image Comming Soon"
+              = image_tag review.image.url , size: "160x140", alt: "Image Comming Soon"
             .main__bottom__review-box__top__beer-name
               = review.beer_name
         .main__bottom__review-box__bottom

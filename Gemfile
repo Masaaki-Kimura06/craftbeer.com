@@ -75,6 +75,7 @@ gem 'compass-rails', '3.1.0'
 gem 'sprockets', '3.7.2'
 gem 'kaminari'
 gem 'jquery-rails'
+gem 'impressionist', '~>1.6.1'
 
 
 group :production do

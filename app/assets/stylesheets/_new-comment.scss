@@ -8,12 +8,12 @@
     font-size: 20px;
   }
 
-  &__top2 {
+  &__top {
     display: flex;
     margin-top: 30px;
-    height: 800px;
+    height: 500px;
     width: 1000px;
-    &__required-item {
+    &__text-area {
       background-color: whitesmoke;
       border: gray 5px solid;
       width: 500px;
@@ -32,7 +32,7 @@
         margin-top: 5px;
       }
     }
-    &__any-item {
+    &__beer-spot {
       background-color: whitesmoke;
       border: gray 5px solid;
       width: 500px;
@@ -43,12 +43,16 @@
       padding-top: 15px;
       font-weight: bold;
     }
+    .size-arrange {
+      height: 10000px;
+    }
   }
   &__beer-spot {
     margin-top: 20px;
   }
-  &__submit-btn {
+  &__send-btn {
     margin-top: 20px;
+    margin-left: 350px;
     height: 300px;
     #submit {
       width: 300px;

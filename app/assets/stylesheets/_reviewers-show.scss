@@ -7,6 +7,7 @@ html, body {
   display: flex;
   justify-content: center;
   height: 100vh;
+  min-width:1024px;
 
 .wrapper {
   border: 1px solid lightgrey;
@@ -160,13 +161,12 @@ html, body {
       margin: 15px 15px 15px 15px;
       border: 1px solid lightgray;
       height: 250px;
-      width: 100%;
+      width: 750px;
       display: flex;
       &__image-box {
         padding-right: 0 15px;
         border: 1px solid lightgray;
         p {
-          margin:5px 0 0 100px ;
           font-size: 20px;
           font-weight: bold;
         }
@@ -175,13 +175,13 @@ html, body {
         &__top4 {
           background-color:#503001 ;
           height: 60px;
-          width: 471px;
           display: flex;
           justify-content: space-between;
           font-size: 15px;
           &__beer-spec {
             color: ivory;
             margin: 10px;
+            width: 285px;
             &__reviewer-name {
               font-size: 25px;
               font-weight: bold;

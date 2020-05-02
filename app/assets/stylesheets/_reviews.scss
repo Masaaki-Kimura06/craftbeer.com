@@ -7,6 +7,7 @@ html, body {
   display: flex;
   justify-content: center;
   height: 100vh;
+  min-width:1024px;
 
 .wrapper {
   border: 1px solid lightgrey;
@@ -74,7 +75,7 @@ html, body {
     width: 100%;
     margin-bottom: 30px;
     &__left-box {
-      margin: 15px 0 0 15px;
+      margin: 15px 100px 0 15px;
       border: 1px solid lightgray;
       height: 250px;
       line-height: 33px;
@@ -160,16 +161,15 @@ html, body {
     }
     }
     &__right-box {
-      margin: 15px 15px 15px 15px;
+      margin: 15px;
       border: 1px solid lightgray;
       height: 250px;
-      width: 100%;
       display: flex;
       &__image-box {
-        padding-right: 0 15px;
         border: 1px solid lightgray;
+        width: 700px;
+        text-align: center;
         p {
-          margin:5px 0 0 100px ;
           font-size: 20px;
           font-weight: bold;
         }
@@ -178,12 +178,14 @@ html, body {
         &__top {
           background-color:rgb(98, 152, 69) ;
           height: 125px;
+          width: 465px;
           display: flex;
           justify-content: space-between;
           font-size: 15px;
           &__beer-spec {
             color: ivory;
             margin: 10px;
+            width: 285px;
             &__name {
               font-size: 25px;
               font-weight: bold;
@@ -192,7 +194,7 @@ html, body {
           }
           &__rate {
             font-size: 20px;
-            color: gold;
+            color:orange;
             text-align: center;
             font-weight: bold;
             font-size: 20px;

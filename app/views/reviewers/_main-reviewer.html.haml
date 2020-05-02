@@ -138,7 +138,7 @@
         .main__bottom__review-box__top
           = link_to "/reviews/#{review.id}" do
             .main__bottomz__review-box__top__beer-image
-              = image_tag review.image , size: "180x140", alt: "Image Comming Soon"
+              = image_tag review.image.url , size: "160x140", alt: "Image Comming Soon"
             .main__bottom__review-box__top__beer-name
               = review.beer_name
         .main__bottom__review-box__bottom

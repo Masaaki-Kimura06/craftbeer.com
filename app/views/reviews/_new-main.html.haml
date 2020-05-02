@@ -1,0 +1,72 @@
+.form-box
+  = link_to root_path do
+    %h2 TOPページに戻る
+  = form_with(model: @review, local: true) do |form|
+    .form-box__top2
+      .form-box__top2__required-item
+        %h3
+          必須項目
+        %p  
+          ＜5段階評価＞
+        = form.number_field :rate, in: 1.0..5.0, step: 0.5
+        %p 
+          ＜beer-name＞
+        = form.text_field :beer_name, placeholder: "beer_name", size: "50"
+        %p 
+          ＜image＞
+        = form.label :image, class: "input-box__image" do
+          = icon("fas", "image")
+          = form.file_field :image, class: "input-box__image__file"
+        %p 
+          ＜他テーブル情報選択＞
+        = form.collection_select :reviewer_id, Reviewer.all, :id, :reviewer_name
+        = form.collection_select :style_id, Style.all, :id, :beer_style
+        = form.collection_select :brewery_id, Brewery.all, :id, :brewery_name          
+        %p 
+          ＜text＞
+        = form.text_area :text, placeholder: "レビュー", rows: "10", size: "50", maxlength: "140" 
+
+    
+      .form-box__top2__any-item
+        %h3
+          任意項目
+        %p 
+          ＜beer-space＞               
+        = form.number_field :abv, step: 0.1, placeholder: "abv(例：6.5)"
+        = form.number_field :ibu, step: 0.1, placeholder: "ibu(例：60)"
+        %p 
+          ＜EC導線＞        
+        = form.text_field :ec_goodbeer, placeholder: "ec_goodbeer", size: "50"
+        = form.text_field :ec_amazon, placeholder: "ec_amazon", size: "50"
+        = form.text_field :ec_rakuten, placeholder: "ec_rakuten", size: "50"
+        %p 
+          ＜お店情報＞         
+        = form.text_field :beer_spot_name, placeholder: "beer_spot_name", size: "50"
+        = form.text_field :beer_spot_city, placeholder: "beer_spot_city", size: "50"
+        = form.text_field  :beer_spot_url, placeholder: "beer_spot_url", size: "50"
+        %p 
+          ＜他テーブル情報新規登録＞
+        = link_to "/reviewers/new" do
+          レビュアー新規登録
+        %p   
+        = link_to "#" do
+          スタイル新規登録
+        %p   
+        = link_to "#" do
+          ブリュワリー新規登録                            
+  
+    .form-box__submit-btn
+      = form.submit "SEND", id: "submit"
+
+
+
+        
+ 
+
+
+
+        
+        
+
+
+

@@ -1,35 +1,4 @@
-.contents 
-  = link_to root_path do
-    %h2 TOP
-  .container
-    = form_with(model: @review, local: true) do |form|
-      = form.text_field :beer_name, placeholder: "beer_name"
-      #star
-        = form.label :rate
-        = form.hidden_field :rate, id: :review_star
-      :javascript
-        $('#star').raty({
-          number: 5,
-          size: 36,
-          starOff: "#{asset_path('star-off.png')}",
-          starOn: "#{asset_path('star-on.png')}",
-          starHalf: "#{asset_path('star-half.png')}",
-          scoreName: 'review[rate]',
-          half: true,
-          });
-      = form.number_field :abv, step: 0.1, placeholder: "abv(例：6.5)"
-      = form.number_field :ibu, step: 0.1, placeholder: "ibu(例：60)"
-      = form.text_field :ec_goodbeer, placeholder: "ec_goodbeer"
-      = form.text_field :ec_amazon, placeholder: "ec_amazon"
-      = form.text_field :ec_rakuten, placeholder: "ec_rakuten"
-      = form.text_field :beer_spot_name, placeholder: "beer_spot_name"
-      = form.text_field :beer_spot_city, placeholder: "beer_spot_city"
-      = form.text_field  :beer_spot_url, placeholder: "beer_spot_url"
-      = form.text_field :image, placeholder: "image-url"
-      = form.text_area :text, placeholder: "text" , rows: "10px", maxlength: "850"
-      = form.collection_select :reviewer_id, Reviewer.all, :id, :reviewer_name
-      = form.collection_select :style_id, Style.all, :id, :beer_style
-      = form.collection_select :brewery_id, Brewery.all, :id, :brewery_name
-      = form.submit "SEND"
-
-
+.wrapper
+  = render "header"
+  = render "new-main"
+  = render "footer"

@@ -1,0 +1,23 @@
+.form-box
+  = link_to root_path do
+    %h2 TOPページに戻る
+  = form_with(model: @reviewer, local: true) do |form|
+    .form-box__top2
+      .form-box__top2__required-item
+        %h3
+          レビュアー新規登録
+        %p  
+          ＜会社名/役職＞
+        = form.text_field :company_name, placeholder: "会社名/役職名", size: "50"
+        %p 
+          ＜レビューアー名＞
+        = form.text_field :reviewer_name, placeholder: "木村政明", size: "50"
+        %p 
+          ＜image＞
+        = form.label :image, class: "input-box__image" do
+          = icon("fas", "image")
+          = form.file_field :image, class: "input-box__image__file"
+          ＜text＞
+        = form.text_area :guide_text, placeholder: "レビュー", rows: "10", size: "50", maxlength: "140"              
+    .form-box__submit-btn
+      = form.submit "SEND", id: "submit"

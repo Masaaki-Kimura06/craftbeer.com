@@ -2,21 +2,32 @@
   .show-main__top
     .show-main__top__left-box
       .show-main__top__left-box__image-box
-        = image_tag @review.image, size: "391x418", alt: "Image Comming Soon"
+        = image_tag @review.image.url, size: "360x400", alt: "Image Comming Soon"
     .show-main__top__right-box
       .show-main__top__right-box__top
-        = link_to "#" do
+        = link_to  "/reviewer/#{@review.reviewer_id}" do
           .show-main__top__right-box__top__reviewer-image
-            = image_tag "sample-profile", size: "110x90", alt: "Image Comming Soon"
+            = image_tag @review.reviewer.image, size: "110x90", alt: "Image Comming Soon"
         .show-main__top__right-box__top__info
           .show-main__top__right-box__top__info__about-reviewer
-          = link_to "#" do
+          = link_to reviewer_path(1) do
             %span
-              運営者
-          %span
-            = @review.created_at.strftime("%Y年%m月%d日")
+              = @review.reviewer.reviewer_name
+          = @review.created_at.strftime("%Y年%m月%d日")
           .show-main__top__right-box__top__info__rate
-            ★★★★★
+            %p 評価
+            %div{:id => "star-rate-#{@review.id}"}
+              :javascript
+                $('#star-rate-#{@review.id}').raty({
+                  number: 5,
+                  size: 36,
+                  starOff: "#{asset_path('star-off.png')}",
+                  starOn: "#{asset_path('star-on.png')}",
+                  starHalf: "#{asset_path('star-half.png')}",
+                  half: true,
+                  readOnly: true,
+                  score: "#{@review.rate}",
+                  });              
           .show-main__top__right-box__top__info__about-ec
             = link_to @review.ec_amazon, target: :_blank do
               - if @review.ec_amazon.blank?
@@ -37,11 +48,13 @@
           %dl
             %dt ブリュワリー
             %dd
-              = @review.brewery.brewery_name
+              = link_to  "/brewery/#{@review.brewery_id}" do
+                = @review.brewery.brewery_name
           %dl
             %dt スタイル
             %dd
-              = @review.style.beer_style
+              = link_to  "/styles/#{@review.style_id}" do
+                = @review.style.beer_style
           %dl
             %dt 生産地
             %dd 
@@ -76,10 +89,49 @@
       = link_to root_path do
         TOPページへ
   .show-main__comment
-    .show-main__comment__left-box
-      %h3　飲んだ感想をシェアしよう！
-      %form.show-main__comment__left-box__comment-box
-        %input.show-main__comment__left-box__text
-        %input.show-main__comment__left-box__rate
-    .show-main__comment__right-box
-      %h3　飲めるお店をシェアしよう！    
+    .show-main__comment__top-box
+      - if current_user
+        = link_to "#{@review.id}/comments/new" do
+          🍺この麦酒の感想を書く/飲めるお店をシェアする
+      - else
+        = link_to "/users/sign_in" do
+          ✔︎コメントには新規登録/ログインが必要です
+    .show-main__comment__bottom-box
+      .show-main__comment__bottom-box__kannsou
+        %h4 感想
+        - if @comments
+          - @comments.each do |comment|
+            .show-main__comment__bottom-box__kannsou__content
+              %p
+                %div{:id => "comment-rate-#{comment.id}"}
+                  :javascript
+                    $('#comment-rate-#{comment.id}').raty({
+                      number: 5,
+                      size: 36,
+                      starOff: "#{asset_path('star-off.png')}",
+                      starOn: "#{asset_path('star-on.png')}",
+                      starHalf: "#{asset_path('star-half.png')}",
+                      half: true,
+                      readOnly: true,
+                      score: "#{comment.rate}",
+                      });  
+              %p       
+                = comment.created_at.strftime("%Y年%m月%d日")
+              %p 
+                = comment.text
+      .show-main__comment__bottom-box__beer-spot
+        %h4 飲めるお店
+        - if @comments
+          - @comments.each do |comment|
+            .show-main__comment__bottom-box__beer-spot__content
+              %p
+                = comment.created_at.strftime("%Y年%m月%d日")
+              %p   
+                ＜ 
+                = comment.beer_spot_city
+                ＞
+                = comment.beer_spot_name
+              %p 
+                = link_to comment.beer_spot_url do
+                  = truncate(comment.beer_spot_url, :length => 45)
+                  

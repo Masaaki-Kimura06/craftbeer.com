@@ -140,7 +140,7 @@
         .main__bottom__review-box__top
           = link_to "/reviews/#{review.id}" do
             .main__bottomz__review-box__top__beer-image
-              = image_tag review.image , size: "180x140", alt: "Image Comming Soon"
+              = image_tag review.image.url , size: "160x140", alt: "Image Comming Soon"
             .main__bottom__review-box__top__beer-name
               = review.beer_name
         .main__bottom__review-box__bottom
@@ -163,7 +163,18 @@
             = link_to "/reviews/#{review.id}" do
               more
           .main__bottom__review-box__bottom__rate
-            ★★★★★
+            %div{:id => "star-rate-#{review.id}"}
+              :javascript
+                $('#star-rate-#{review.id}').raty({
+                  number: 5,
+                  size: 36,
+                  starOff: "#{asset_path('star-off.png')}",
+                  starOn: "#{asset_path('star-on.png')}",
+                  starHalf: "#{asset_path('star-half.png')}",
+                  half: true,
+                  readOnly: true,
+                  score: "#{review.rate}",
+                  });
     
 .paginate
   = paginate(@reviews)
