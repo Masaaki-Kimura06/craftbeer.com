@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: craftbeer_com_production
-  username: craftbeer_com
-  password: <%= ENV['CRAFTBEER_COM_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
