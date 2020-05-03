@@ -1,0 +1,21 @@
+.form-box
+  = link_to root_path do
+    %h2 TOPページに戻る
+  = form_with(model: @style, local: true) do |form|
+    .form-box__top3
+      .form-box__top3__required-item
+        %h3
+          スタイル新規登録
+        %p  
+          ＜スタイル名＞
+        = form.text_field :beer_style, placeholder: "スタイル", size: "50"
+        %p 
+          ＜image＞
+        = form.label :image, class: "input-box__image" do
+          = icon("fas", "image")
+          = form.file_field :image, class: "input-box__image__file"
+        %p 
+          ＜説明文＞
+        = form.text_area :text, placeholder: "紹介分", rows: "10", size: "50", maxlength: "140"              
+    .form-box__submit-btn
+      = form.submit "SEND", id: "submit"

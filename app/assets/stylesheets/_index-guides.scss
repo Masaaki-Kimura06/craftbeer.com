@@ -1,0 +1,40 @@
+.content {
+  height: 800px;
+  width: 100%;
+  margin-top: 50px;
+  &__title {
+    height: 70px;
+    width: 800px;
+    background-color:#BDBEC2;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 70px;
+    margin: 0 auto;
+    padding-left: 20px;
+    border-radius: 5px;
+  }
+  &__message {
+    height: 600px;
+    width: 800px;
+    background-color: bisque;
+    margin: 30px auto;
+    border-radius: 5px;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F3F4F5), to(#C8C9CA), color-stop(1,#eee));
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.15);
+    padding: 15px;
+    font-size: 18px;
+    &__name {
+      margin: 20px 0 0 680px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+  &__top-page {
+    text-align: center;
+  }
+  a {
+    text-decoration: none;
+    font-size: 18px;
+  }
+}

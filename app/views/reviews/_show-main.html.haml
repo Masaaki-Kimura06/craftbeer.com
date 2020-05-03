@@ -5,12 +5,12 @@
         = image_tag @review.image.url, size: "360x400", alt: "Image Comming Soon"
     .show-main__top__right-box
       .show-main__top__right-box__top
-        = link_to  "/reviewer/#{@review.reviewer_id}" do
+        = link_to  "/reviewers/#{@review.reviewer_id}" do
           .show-main__top__right-box__top__reviewer-image
             = image_tag @review.reviewer.image, size: "110x90", alt: "Image Comming Soon"
         .show-main__top__right-box__top__info
           .show-main__top__right-box__top__info__about-reviewer
-          = link_to reviewer_path(1) do
+          = link_to  "/reviewers/#{@review.reviewer_id}" do
             %span
               = @review.reviewer.reviewer_name
           = @review.created_at.strftime("%Y年%m月%d日")
@@ -48,7 +48,7 @@
           %dl
             %dt ブリュワリー
             %dd
-              = link_to  "/brewery/#{@review.brewery_id}" do
+              = link_to "/breweries/#{@review.brewery_id}" do
                 = @review.brewery.brewery_name
           %dl
             %dt スタイル

@@ -8,12 +8,11 @@
     font-size: 20px;
   }
 
-  &__top2 {
-    display: flex;
+  &__top3 {
     margin-top: 30px;
-    margin-left: 10px;
-    height: 800px;
+    height: 500px;
     width: 1000px;
+    margin: 15px 0 0 250px;
     &__required-item {
       background-color: whitesmoke;
       border: gray 5px solid;
@@ -33,11 +32,6 @@
         margin-top: 5px;
       }
     }
-    &__any-item {
-      background-color: whitesmoke;
-      border: gray 5px solid;
-      width: 500px;
-    }
     p {
       text-align: left;
       margin-left: 15px;
@@ -45,11 +39,8 @@
       font-weight: bold;
     }
   }
-  &__beer-spot {
-    margin-top: 20px;
-  }
   &__submit-btn {
-    margin-top: 20px;
+    margin-top: 50px;
     height: 300px;
     #submit {
       width: 300px;

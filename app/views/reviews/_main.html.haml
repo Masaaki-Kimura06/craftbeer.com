@@ -4,7 +4,7 @@
       %ul.main__top__left-box__guide
         メニュー
         %li.main__top__left-box__guide__start-guide
-          = link_to "#" do
+          = link_to guides_path do
             ✔️麦酒どっとこむとは
         - if user_signed_in?
           %li.main__top__left-box__guide__login
@@ -165,7 +165,7 @@
                    });           
           .main__top__right-box__review-box__bottom
             .main__top__right-box__review-box__bottom__reviewr-info
-              = link_to  "/reviewer/#{@topreview.reviewer_id}" do
+              = link_to  "/reviewers/#{@topreview.reviewer_id}" do
                 .main__top__right-box__review-box__bottom__reviewr-info__profile-image
                   = image_tag @topreview.reviewer.image, size: "110x90", alt: "Image Comming Soon"  
                 .main__top__right-box__review-box__bottom__reviewr-info__profile-name
@@ -207,7 +207,7 @@
                     });            
           .main__top__right-box__review-box__bottom
             .main__top__right-box__review-box__bottom__reviewr-info
-              = link_to  "/reviewer/#{@secondreview.reviewer_id}" do
+              = link_to  "/reviewers/#{@secondreview.reviewer_id}" do
                 .main__top__right-box__review-box__bottom__reviewr-info__profile-image
                   = image_tag @secondreview.reviewer.image, size: "110x90", alt: "Image Comming Soon"  
                 .main__top__right-box__review-box__bottom__reviewr-info__profile-name
@@ -216,48 +216,7 @@
               = truncate(@secondreview.text, :length => 70)
               = link_to "/reviews/#{@secondreview.id}" do
                 more
-
-      -# .main__top__right-box
-      -#   .main__top__right-box__image-box
-      -#     %p おすすめ麦酒③
-      -#     = link_to "reviews/#{@thirdreview.id}" do
-      -#       = image_tag @thirdreview.image, size: "210x200", alt: "Image Comming Soon"
-      -#   .main__top__right-box__review-box
-      -#     .main__top__right-box__review-box__top
-      -#       .main__top__right-box__review-box__top__beer-spec
-      -#         .main__top__right-box__review-box__top__beer-spec__name
-      -#           = @thirdreview.beer_name
-      -#         .main__top__right-box__review-box__top__beer-spec__brewery
-      -#           ブリュワリー名：
-      -#           = @thirdreview.brewery.brewery_name
-      -#         .main__top__right-box__review-box__top__beer-spec__style
-      -#           スタイル：
-      -#           = @thirdreview.style.beer_style
-      -#       .main__top__right-box__review-box__top__rate
-      -#         %p 評価
-      -#         %div{:id => "third-star-rate-#{@thirdreview.id}"}
-      -#           :javascript
-      -#             $('#third-star-rate-#{@thirdreview.id}').raty({
-      -#               number: 5,
-      -#               size: 36,
-      -#               starOff: "#{asset_path('star-off.png')}",
-      -#               starOn: "#{asset_path('star-on.png')}",
-      -#               starHalf: "#{asset_path('star-half.png')}",
-      -#               half: true,
-      -#               readOnly: true,
-      -#               score: "#{@thirdreview.rate}",
-      -#               });            
-      -#     .main__top__right-box__review-box__bottom
-      -#       .main__top__right-box__review-box__bottom__reviewr-info
-      -#         = link_to  "/reviewer/#{@thirdreview.reviewer_id}" do
-      -#           .main__top__right-box__review-box__bottom__reviewr-info__profile-image
-      -#             = image_tag @thirdreview.reviewer.image, size: "110x90", alt: "Image Comming Soon"  
-      -#           .main__top__right-box__review-box__bottom__reviewr-info__profile-name
-      -#             = @thirdreview.reviewer.reviewer_name
-      -#       .main__top__right-box__review-box__bottom__review-summary
-      -#         = truncate(@thirdreview.text, :length => 70)
-      -#         = link_to "/reviews/#{@thirdreview.id}" do
-      -#           more                
+             
 
   .main__bottom  
     - @reviews.each do |review|
@@ -270,7 +229,7 @@
               = review.beer_name
         .main__bottom__review-box__bottom
           .main__bottom__review-box__bottom__content
-            = link_to "/reviews/#{review.id}" do
+            = link_to "/reviewers/#{review.reviewer_id}" do
               .main__bottom__review-box__bottom__content__reviewer-info
                 .main__bottom__review-box__bottom__content__reviewer-info__image
                   = image_tag review.reviewer.image, size: "60x50", alt: "Image Comming Soon"  

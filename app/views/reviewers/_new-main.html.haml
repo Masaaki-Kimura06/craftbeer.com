@@ -2,8 +2,8 @@
   = link_to root_path do
     %h2 TOPページに戻る
   = form_with(model: @reviewer, local: true) do |form|
-    .form-box__top2
-      .form-box__top2__required-item
+    .form-box__top3
+      .form-box__top3__required-item
         %h3
           レビュアー新規登録
         %p  
@@ -17,7 +17,8 @@
         = form.label :image, class: "input-box__image" do
           = icon("fas", "image")
           = form.file_field :image, class: "input-box__image__file"
+        %p 
           ＜text＞
-        = form.text_area :guide_text, placeholder: "レビュー", rows: "10", size: "50", maxlength: "140"              
+        = form.text_area :guide_text, placeholder: "紹介分", rows: "10", size: "50", maxlength: "140"              
     .form-box__submit-btn
       = form.submit "SEND", id: "submit"

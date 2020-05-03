@@ -8,7 +8,12 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = Review.new 
+    if  current_user.admin == false
+        redirect_to root_path
+    else
+        @review = Review.new 
+    end
+    
   end
 
   def create

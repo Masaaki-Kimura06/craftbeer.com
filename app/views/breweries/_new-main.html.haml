@@ -1,0 +1,27 @@
+.form-box
+  = link_to root_path do
+    %h2 TOPページに戻る
+  = form_with(model: @brewery, local: true) do |form|
+    .form-box__top3
+      .form-box__top3__required-item
+        %h3
+          ブリュワリー新規登録
+        %p  
+          ＜ブリュワリー名＞
+        = form.text_field :brewery_name, placeholder: "ブリュワリー名", size: "50"
+        %p  
+          ＜国＞
+        = form.text_field :brewery_country, placeholder: "日本/海外", size: "50"
+        %p  
+          ＜city＞
+        = form.text_field :brewery_city, placeholder: "都道府県/海外国名", size: "50"                
+        %p 
+          ＜image＞
+        = form.label :image, class: "input-box__image" do
+          = icon("fas", "image")
+          = form.file_field :image, class: "input-box__image__file"
+        %p   
+          ＜説明文＞
+        = form.text_area :text, placeholder: "紹介分", rows: "10", size: "50", maxlength: "140"              
+    .form-box__submit-btn
+      = form.submit "SEND", id: "submit"

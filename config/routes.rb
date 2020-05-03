@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :reviews, only: [:index, :new, :create, :show] do
     resources :comments, only: [:new, :create]
   end
-  resources :styles, only: :show
-  resources :brewery, only: :show
+  resources :styles, only: [:show, :new, :create]
+  resources :breweries, only: [:show, :new, :create]
   resources :reviewers, only: [:show, :new, :create]
   resources :users, only: [:edit, :update,]
+  resources :guides, only: :index
 end
