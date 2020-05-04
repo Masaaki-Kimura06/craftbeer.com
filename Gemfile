@@ -80,5 +80,5 @@ gem 'impressionist', '~>1.6.1'
 
 
 group :production do
-  gem 'pg'
+  gem 'unicorn', '5.4.1'
 end
